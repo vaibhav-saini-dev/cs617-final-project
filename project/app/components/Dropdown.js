@@ -4,13 +4,11 @@
 import { useState } from 'react';
 import { FaCaretDown } from 'react-icons/fa';
 
-export default function Dropdown() {
+export default function Dropdown({ text, options }) {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedLanguage, setSelectedLanguage] = useState('Select Course');
+    const [selectedLanguage, setSelectedLanguage] = useState(text);
 
-    const languages = ['DSA Self Placed', 'JavaScript',
-                       'Python', 'Java', 'C++', 'Ruby',
-                       'Go', 'TypeScript'];
+    const languages = options;
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
@@ -22,7 +20,6 @@ export default function Dropdown() {
     };
 
     return (
-        <div className="flex justify-center min-h-screen">
             <div className="relative inline-block text-left">
                 {/* Dropdown button */}
                 <button
@@ -42,7 +39,7 @@ export default function Dropdown() {
                     <div className="origin-top-right absolute
                                     right-0 mt-2 w-56 rounded-md
                                     shadow-lg bg-white ring-1 ring-black
-                                    ring-opacity-5 focus:outline-none">
+                                    ring-opacity-5 focus:outline-none z-10">
                         <div className="py-1">
                             {languages.map((language, index) => (
                                 <a
@@ -60,6 +57,5 @@ export default function Dropdown() {
                     </div>
                 )}
             </div>
-        </div>
     );
 }

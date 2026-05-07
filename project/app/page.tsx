@@ -26,7 +26,8 @@ export default function Home() {
             </a>{" "}
             center.
           </p>
-          <Dropdown />
+          <Dropdown text="Select Hospital" options={["Hospital 1", "Hospital 2"]} />
+          <Dropdown text="Behavioral Health Issues?" options={["Yes", "No"]} />
         </div>
       </main>
     </div>
