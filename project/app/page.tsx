@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Dropdown from "./components/Dropdown";
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
             </a>{" "}
             center.
           </p>
+          <Dropdown />
         </div>
       </main>
     </div>
