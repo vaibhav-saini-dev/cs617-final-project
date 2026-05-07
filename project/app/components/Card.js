@@ -5,7 +5,7 @@ import Image from 'next/image';
 const Card = () => {
     return (
         <>
-            <div className="max-w-sm rounded overflow-hidden shadow-lg shadow-gray-400 bg-white
+            <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white
             text-center">
                 <div className="px-6 py-4">
                     <div className="font-bold text-4xl mb-2 text-gray-700">AVG STAY</div>
