@@ -12,7 +12,7 @@ export default function Home() {
           
           <Dropdown text="Select Hospital" options={["Hospital 1", "Hospital 2"]} />
           <Dropdown text="Behavioral Health Issues?" options={["Yes", "No"]} />
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
+          <p className="max-w-md pb-4 text-lg leading-8 text-zinc-600 dark:text-zinc-400">
             Source: <a className="text-blue-400" href="https://www.chiamass.gov/assets/docs/r/Case-Mix-Reports/CMSR-EDD-Legacy-Databook-10-01-2016-to-06-30-2019.xlsx">
             Massachusetts Acute Care Hospital Emergency Department Data October 2016 through June 2019 </a>
           </p>
