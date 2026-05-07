@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Dropdown from "./components/Dropdown";
-
+import Card from "./components/Card";
 export default function Home() {
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
@@ -17,6 +17,7 @@ export default function Home() {
             Massachusetts Acute Care Hospital Emergency Department Data October 2016 through June 2019 </a>
           </p>
         </div>
+        <Card />
       </main>
     </div>
   );
