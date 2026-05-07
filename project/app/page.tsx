@@ -15,12 +15,12 @@ export default function Home() {
             <div className="flex gap-5">
               <Dropdown 
                 text="Select Hospital" 
-                options={["Hospital 1", "Hospital 2"]} 
+                options={["Select Hospital", "Hospital 1", "Hospital 2"]} 
               />
 
               <Dropdown 
                 text="Behavioral Health Issues?" 
-                options={["Yes", "No"]} 
+                options={["Behavioral Health Issues?", "Yes", "No"]} 
               />
             </div>
 
