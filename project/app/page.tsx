@@ -9,25 +9,13 @@ export default function Home() {
           <h1 className="text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
             When Healing Takes Longer: Behavioral Health Impact On Hospital Stay Lengths
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+          
           <Dropdown text="Select Hospital" options={["Hospital 1", "Hospital 2"]} />
           <Dropdown text="Behavioral Health Issues?" options={["Yes", "No"]} />
+          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
+            Source: <a className="text-blue-400" href="https://www.chiamass.gov/assets/docs/r/Case-Mix-Reports/CMSR-EDD-Legacy-Databook-10-01-2016-to-06-30-2019.xlsx">
+            Massachusetts Acute Care Hospital Emergency Department Data October 2016 through June 2019 </a>
+          </p>
         </div>
       </main>
     </div>
