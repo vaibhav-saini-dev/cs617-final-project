@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image';
+// Source: https://v1.tailwindcss.com/components/cards
 
 const Card = () => {
     return (
