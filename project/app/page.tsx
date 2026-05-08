@@ -16,11 +16,13 @@ export default function Home() {
   }, []);
 
   const selected = data.filter((row) => {
-    const hospitalMatch = hospital === "Select Hospital" || row.Hospital === hospital;
+    if (!isNaN(Number(row["Average Length of Stay"]))) {
+      const hospitalMatch = hospital === "Select Hospital" || row.Hospital === hospital;
 
-    const bhMatch =
-      bh === "Behavioral Health Issues?" || row.bh === bh;
-    return hospitalMatch && bhMatch;
+      const bhMatch =
+        bh === "Behavioral Health Issues?" || row.bh === bh;
+      return hospitalMatch && bhMatch;
+    }
   });
 
   useEffect(() => {
@@ -66,7 +68,7 @@ export default function Home() {
           </div>
 
           <div className="flex justify-center lg:justify-end">
-            <Card hospital={hospital} bh={bh} selected={selected}/>
+            <Card hospital={hospital} bh={bh} selected={selected} />
           </div>
 
         </div>

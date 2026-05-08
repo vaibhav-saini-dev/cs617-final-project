@@ -11,17 +11,63 @@ const Card = ({ hospital, bh, selected }) => {
     
     useEffect(() => {
         const total = selected.reduce((sum, row) => {
-            if (row["Average Length of Stay"] != "*") {
-                return sum + Number(row["Average Length of Stay"]);
-            } else {
+            const value = Number(row["Average Length of Stay"]);
+
+            if (isNaN(value)) {
                 return sum;
+            } else {
+                return sum + value;
             }
         }, 0);
+
         const average = total/selected.length;
         setAvg(average.toFixed(2));
 
         if (showExtra) {
+            const minStay = selected.reduce((min, row) => {
+                const value = Number(row["Average Length of Stay"]);
 
+                if (isNaN(value)) {
+                    return min;
+                }
+
+                if (value < min) {
+                    return value;
+                } else {
+                    return min;
+                }
+            }, Infinity);
+
+            const maxStay = selected.reduce((max, row) => {
+                const value = Number(row["Average Length of Stay"]);
+
+                if (isNaN(value)) {
+                    return max;
+                }
+
+                if (value > max) {
+                    return value;
+                } else {
+                    return max;
+                }
+            }, -Infinity);
+
+            if (minStay != Infinity) {
+                setShortestStay(minStay.toFixed(2));
+            }
+
+            if (maxStay != -Infinity) {
+                setLongestStay(maxStay.toFixed(2));
+            }
+
+            const consistency = selected.reduce((sum, row) => {
+                const value = Number(row["Average Length of Stay"]);
+                return sum + Math.pow(value - average, 2);
+            }, 0) / selected.length;
+
+            const stdDev = Math.sqrt(consistency);
+
+            setConsistency(stdDev.toFixed(2));
         }
     }, [selected]);
     
@@ -29,7 +75,7 @@ const Card = ({ hospital, bh, selected }) => {
       if (bh == "Behavioral Health Issues?") {
         setShowExtra(true);
       } else {
-        setShowExtra(false);
+        setShowExtra(true);
       }
     }, [hospital, bh]);
     
