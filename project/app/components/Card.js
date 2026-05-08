@@ -2,35 +2,34 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 // Source: https://v1.tailwindcss.com/components/cards
 
-const Card = ({ hospital, bh, condition, condPresent, selected }) => {
+const Card = ({ hospital, bh, condition, condPresent, year, selected }) => {
     const [avg, setAvg] = useState(0);
     const [showExtra, setShowExtra] = useState(false);
     const [consistency, setConsistency] = useState(0);
     const [longestStay, setLongestStay] = useState(0);
     const [shortestStay, setShortestStay] = useState(0);
-    
-    useEffect(() => {
-        const total = selected.reduce((sum, row) => {
-            const value = Number(row["Average Length of Stay"]);
 
-            if (isNaN(value)) {
-                return sum;
-            } else {
-                return sum + value;
-            }
+    useEffect(() => {
+        const values = selected
+            .map(row => Number(row["Average Length of Stay"]))
+            .filter(value => !isNaN(value));
+
+        if (values.length === 0) {
+            setAvg(0);
+            setConsistency(0);
+            setLongestStay(0);
+            setShortestStay(0);
+            return;
+        }
+
+        const total = values.reduce((sum, value) => {
+            return sum + value;
         }, 0);
 
-        const average = total/selected.length;
-        setAvg(average.toFixed(2));
+        const average = total / values.length;
 
         if (showExtra) {
-            const minStay = selected.reduce((min, row) => {
-                const value = Number(row["Average Length of Stay"]);
-
-                if (isNaN(value)) {
-                    return min;
-                }
-
+            const minStay = values.reduce((min, value) => {
                 if (value < min) {
                     return value;
                 } else {
@@ -38,13 +37,7 @@ const Card = ({ hospital, bh, condition, condPresent, selected }) => {
                 }
             }, Infinity);
 
-            const maxStay = selected.reduce((max, row) => {
-                const value = Number(row["Average Length of Stay"]);
-
-                if (isNaN(value)) {
-                    return max;
-                }
-
+            const maxStay = values.reduce((max, value) => {
                 if (value > max) {
                     return value;
                 } else {
@@ -52,33 +45,30 @@ const Card = ({ hospital, bh, condition, condPresent, selected }) => {
                 }
             }, -Infinity);
 
-            if (minStay != Infinity) {
-                setShortestStay(minStay.toFixed(2));
-            }
-
-            if (maxStay != -Infinity) {
-                setLongestStay(maxStay.toFixed(2));
-            }
-
-            const consistency = selected.reduce((sum, row) => {
-                const value = Number(row["Average Length of Stay"]);
+            const consistency = values.reduce((sum, value) => {
                 return sum + Math.pow(value - average, 2);
-            }, 0) / selected.length;
+            }, 0) / values.length;
 
             const stdDev = Math.sqrt(consistency);
 
+            setAvg(average.toFixed(2));
+            setLongestStay(maxStay.toFixed(2));
+            setShortestStay(minStay.toFixed(2));
             setConsistency(stdDev.toFixed(2));
         }
     }, [selected]);
-    
+
     useEffect(() => {
-      if (bh == "Behavioral Health Issues?") {
-        setShowExtra(true);
-      } else {
-        setShowExtra(true);
-      }
-    }, [hospital, bh]);
-    
+        if (hospital != "Select Hospital" && bh != "Behavioral Health Issues?" &&
+            condition != "Condition" && condPresent != "Condition Present?" &&
+            year != "Year"
+        ) {
+            setShowExtra(false);
+        } else {
+            setShowExtra(true);
+        }
+    }, [hospital, bh, condition, condPresent, year]);
+
 
     return (
         <>

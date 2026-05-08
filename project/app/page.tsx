@@ -19,7 +19,6 @@ export default function Home() {
   }, []);
 
   const selected = data.filter((row) => {
-    if (!isNaN(Number(row["Average Length of Stay"]))) {
       const hospitalMatch = hospital === "Select Hospital" || row.Hospital === hospital;
 
       const bhMatch = bh === "Behavioral Health Issues?" || row.bh === bh;
@@ -28,10 +27,9 @@ export default function Home() {
 
       const condPresMatch = condPresent === "Condition Present?" || row["Condition Present"] === condPresent;
 
-      const yearMatch = year === "Year" || row["Federal Fiscal Year"] === year;
+      const yearMatch = year === "Year" || String(row["Federal Fiscal Year"]) === String(year);
 
       return hospitalMatch && bhMatch && conditionMatch && condPresMatch && yearMatch;
-    }
   });
 
   useEffect(() => {
@@ -41,7 +39,7 @@ export default function Home() {
     console.log("Condition Present: ", condPresent);
     console.log("Year: ", year)
     console.log(" ");
-  }, [hospital, bh, condition, condPresent]);
+  }, [hospital, bh, condition, condPresent, year]);
 
   return (
     <main className="min-h-screen bg-black text-white font-sans">
@@ -101,7 +99,7 @@ export default function Home() {
           </div>
 
           <div className="flex justify-center lg:justify-end">
-            <Card hospital={hospital} bh={bh} condition={condition} condPresent={condPresent} selected={selected} />
+            <Card hospital={hospital} bh={bh} condition={condition} condPresent={condPresent} year={year} selected={selected} />
           </div>
 
         </div>
