@@ -5,7 +5,10 @@ import Image from 'next/image';
 const Card = ({ hospital, bh, selected }) => {
     const [avg, setAvg] = useState(0);
     const [showExtra, setShowExtra] = useState(false);
-
+    const [consistency, setConsistency] = useState(0);
+    const [longestStay, setLongestStay] = useState(0);
+    const [shortestStay, setShortestStay] = useState(0);
+    
     useEffect(() => {
         const total = selected.reduce((sum, row) => {
             if (row["Average Length of Stay"] != "*") {
@@ -17,10 +20,13 @@ const Card = ({ hospital, bh, selected }) => {
         const average = total/selected.length;
         setAvg(average.toFixed(2));
 
+        if (showExtra) {
+
+        }
     }, [selected]);
     
     useEffect(() => {
-      if (hospital != "Select Hospital" && bh != "Behavioral Health Issues?") {
+      if (bh == "Behavioral Health Issues?") {
         setShowExtra(true);
       } else {
         setShowExtra(false);
@@ -40,9 +46,9 @@ const Card = ({ hospital, bh, selected }) => {
                     {
                         showExtra && (
                             <>
-                                <p className="text-gray-700 text-base">Consistency: 0%</p>
-                                <p className="text-gray-700 text-base">Longest Stay: 0 Days</p>
-                                <p className="text-gray-700 text-base">Shortest Stay: 0 Days</p>
+                                <p className="text-gray-700 text-base">Consistency: {consistency}%</p>
+                                <p className="text-gray-700 text-base">Longest Stay: {longestStay} Days</p>
+                                <p className="text-gray-700 text-base">Shortest Stay: {shortestStay} Days</p>
                             </>
                         )
                     }
