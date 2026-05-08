@@ -5,7 +5,7 @@ import Image from 'next/image';
 const Card = ({ hospital, bh, condition, condPresent, year, selected }) => {
     const [avg, setAvg] = useState(0);
     const [showExtra, setShowExtra] = useState(false);
-    const [consistency, setConsistency] = useState(0);
+    const [std, setStd] = useState(0);
     const [longestStay, setLongestStay] = useState(0);
     const [shortestStay, setShortestStay] = useState(0);
 
@@ -16,7 +16,7 @@ const Card = ({ hospital, bh, condition, condPresent, year, selected }) => {
 
         if (values.length === 0) {
             setAvg(0);
-            setConsistency(0);
+            setStd(0);
             setLongestStay(0);
             setShortestStay(0);
             return;
@@ -37,15 +37,15 @@ const Card = ({ hospital, bh, condition, condPresent, year, selected }) => {
                 return Math.max(max, value);
             }, -Infinity);
 
-            const consistency = values.reduce((sum, value) => {
+            const standardDev = values.reduce((sum, value) => {
                 return sum + Math.pow(value - average, 2);
             }, 0) / values.length;
 
-            const stdDev = Math.sqrt(consistency);
+            const stdDev = Math.sqrt(standardDev);
 
             setLongestStay(maxStay.toFixed(2));
             setShortestStay(minStay.toFixed(2));
-            setConsistency(stdDev.toFixed(2));
+            setStd(stdDev.toFixed(2));
         }
         setAvg(average.toFixed(2));
     }, [selected, showExtra]);
@@ -74,7 +74,7 @@ const Card = ({ hospital, bh, condition, condPresent, year, selected }) => {
                     {
                         showExtra && (
                             <>
-                                <p className="text-gray-700 text-base">Consistency: {consistency}%</p>
+                                <p className="text-gray-700 text-base">Standard Deviation: ±{std} Days</p>
                                 <p className="text-gray-700 text-base">Longest Stay: {longestStay} Days</p>
                                 <p className="text-gray-700 text-base">Shortest Stay: {shortestStay} Days</p>
                             </>
