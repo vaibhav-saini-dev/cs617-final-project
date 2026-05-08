@@ -27,7 +27,7 @@ export default function Home() {
 
       const condPresMatch = condPresent === "Condition Present?" || row["Condition Present"] === condPresent;
 
-      const yearMatch = year === "Year" || String(row["Federal Fiscal Year"]) === String(year);
+      const yearMatch = String(year) === "Year" || String(row["Federal Fiscal Year"]) === String(year);
 
       return hospitalMatch && bhMatch && conditionMatch && condPresMatch && yearMatch;
   });

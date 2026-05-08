@@ -30,7 +30,7 @@ const Card = ({ hospital, bh, condition, condPresent, year, selected }) => {
 
         if (showExtra) {
             const minStay = values.reduce((min, value) => {
-                return Math.min(min, value);
+               return Math.min(min, value);
             }, Infinity);
 
             const maxStay = values.reduce((max, value) => {
@@ -43,17 +43,17 @@ const Card = ({ hospital, bh, condition, condPresent, year, selected }) => {
 
             const stdDev = Math.sqrt(consistency);
 
-            setAvg(average.toFixed(2));
             setLongestStay(maxStay.toFixed(2));
             setShortestStay(minStay.toFixed(2));
             setConsistency(stdDev.toFixed(2));
         }
-    }, [selected]);
+        setAvg(average.toFixed(2));
+    }, [selected, showExtra]);
 
     useEffect(() => {
         if (hospital != "Select Hospital" && bh != "Behavioral Health Issues?" &&
             condition != "Condition" && condPresent != "Condition Present?" &&
-            year != "Year"
+            String(year) != "Year"
         ) {
             setShowExtra(false);
         } else {
