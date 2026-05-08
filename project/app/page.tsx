@@ -11,8 +11,8 @@ export default function Home() {
 
   useEffect(() => {
     fetch("/data/hospital_data.json")
-    .then((res) => res.json())
-    .then((data) => setData(data));
+      .then((res) => res.json())
+      .then((data) => setData(data));
   }, []);
 
   const selected = data.filter((row) => {
@@ -20,30 +20,34 @@ export default function Home() {
 
     const bhMatch =
       bh === "Behavioral Health Issues?" || row.bh === bh;
-
     return hospitalMatch && bhMatch;
   });
+
+  useEffect(() => {
+    console.log("Hospital: ", hospital);
+    console.log("BH: ", bh);
+  }, [hospital, bh]);
 
   return (
     <main className="min-h-screen bg-black text-white font-sans">
       <section className="mx-auto flex min-h-screen w-full max-w-4xl items-center px-8 py-20">
         <div className="grid w-full grid-cols-1 items-center gap-16 lg:grid-cols-2">
-          
+
           <div className="flex flex-col items-start gap-8">
             <h1 className="max-w-3xl text-4xl font-semibold">
               When Healing Takes Longer: Behavioral Health Impact On Hospital Stay Lengths
             </h1>
 
             <div className="flex gap-5">
-              <Dropdown 
-                text="Select Hospital" 
+              <Dropdown
+                text="Select Hospital"
                 options={["Select Hospital", ...new Set(data.map((row) => row.Hospital))]}
                 value={hospital}
-                onChange={setHospital} 
+                onChange={setHospital}
               />
 
-              <Dropdown 
-                text="Behavioral Health Issues?" 
+              <Dropdown
+                text="Behavioral Health Issues?"
                 options={["Behavioral Health Issues?", "Yes", "No"]}
                 value={bh}
                 onChange={setBh}
@@ -62,7 +66,7 @@ export default function Home() {
           </div>
 
           <div className="flex justify-center lg:justify-end">
-            <Card data={selected}/>
+            <Card hospital={hospital} bh={bh} selected={selected}/>
           </div>
 
         </div>

@@ -4,9 +4,8 @@
 import { useState } from 'react';
 import { FaCaretDown } from 'react-icons/fa';
 
-export default function Dropdown({ text, options }) {
+export default function Dropdown({ text, options, value, onChange }) {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedLanguage, setSelectedLanguage] = useState(text);
 
     const languages = options;
 
@@ -14,8 +13,8 @@ export default function Dropdown({ text, options }) {
         setIsOpen(!isOpen);
     };
 
-    const handleSelect = (language) => {
-        setSelectedLanguage(language);
+    const handleSelect = (option) => {
+        onChange(option);
         setIsOpen(false);
     };
 
@@ -30,7 +29,7 @@ export default function Dropdown({ text, options }) {
                                font-medium text-black hover:bg-gray-50"
                     onClick={toggleDropdown}
                 >
-                    {selectedLanguage}
+                    {value}
                     <FaCaretDown className="ml-2" />
                 </button>
 
@@ -41,16 +40,17 @@ export default function Dropdown({ text, options }) {
                                     shadow-lg bg-white ring-1 ring-black
                                     ring-opacity-5 focus:outline-none z-10">
                         <div className="py-1">
-                            {languages.map((language, index) => (
+                            {options.map((option, index) => (
                                 <a
                                     key={index}
                                     href="#"
+                                    type="button"
                                     className="block px-4 py-2
                                                text-sm text-black
                                                hover:bg-gray-100"
-                                    onClick={() => handleSelect(language)}
+                                    onClick={() => handleSelect(option)}
                                 >
-                                    {language}
+                                    {option}
                                 </a>
                             ))}
                         </div>
