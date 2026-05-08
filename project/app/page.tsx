@@ -8,6 +8,9 @@ export default function Home() {
   const [data, setData] = useState([]);
   const [hospital, setHospital] = useState("Select Hospital");
   const [bh, setBh] = useState("Behavioral Health Issues?");
+  const [condition, setCondition] = useState("Condition");
+  const [condPresent, setCondPresent] = useState("Condition Present?");
+  const [year, setYear] = useState("Year");
 
   useEffect(() => {
     fetch("/data/hospital_data.json")
@@ -19,16 +22,26 @@ export default function Home() {
     if (!isNaN(Number(row["Average Length of Stay"]))) {
       const hospitalMatch = hospital === "Select Hospital" || row.Hospital === hospital;
 
-      const bhMatch =
-        bh === "Behavioral Health Issues?" || row.bh === bh;
-      return hospitalMatch && bhMatch;
+      const bhMatch = bh === "Behavioral Health Issues?" || row.bh === bh;
+
+      const conditionMatch = condition === "Condition" || row.Condition === condition;
+
+      const condPresMatch = condPresent === "Condition Present?" || row["Condition Present"] === condPresent;
+
+      const yearMatch = year === "Year" || row["Federal Fiscal Year"] === year;
+
+      return hospitalMatch && bhMatch && conditionMatch && condPresMatch && yearMatch;
     }
   });
 
   useEffect(() => {
     console.log("Hospital: ", hospital);
     console.log("BH: ", bh);
-  }, [hospital, bh]);
+    console.log("Condition: ", condition);
+    console.log("Condition Present: ", condPresent);
+    console.log("Year: ", year)
+    console.log(" ");
+  }, [hospital, bh, condition, condPresent]);
 
   return (
     <main className="min-h-screen bg-black text-white font-sans">
@@ -40,7 +53,7 @@ export default function Home() {
               When Healing Takes Longer: Behavioral Health Impact On Hospital Stay Lengths
             </h1>
 
-            <div className="flex gap-5">
+            <div className="flex flex-col gap-5">
               <Dropdown
                 text="Select Hospital"
                 options={["Select Hospital", ...new Set(data.map((row) => row.Hospital))]}
@@ -53,6 +66,26 @@ export default function Home() {
                 options={["Behavioral Health Issues?", "Yes", "No"]}
                 value={bh}
                 onChange={setBh}
+              />
+
+              <Dropdown
+                text="Condition"
+                options={["Condition", ...new Set(data.map((row) => row.Condition))]}
+                value={condition}
+                onChange={setCondition}
+              />
+
+              <Dropdown
+                text="Condition Present?"
+                options={["Condition Present?", "Excess LOS", "No Excess LOS"]}
+                value={condPresent}
+                onChange={setCondPresent}
+              />
+              <Dropdown
+                text="Year"
+                options={["Year", ...new Set(data.map((row) => row["Federal Fiscal Year"]))]}
+                value={year}
+                onChange={setYear}
               />
             </div>
 
@@ -68,7 +101,7 @@ export default function Home() {
           </div>
 
           <div className="flex justify-center lg:justify-end">
-            <Card hospital={hospital} bh={bh} selected={selected} />
+            <Card hospital={hospital} bh={bh} condition={condition} condPresent={condPresent} selected={selected} />
           </div>
 
         </div>

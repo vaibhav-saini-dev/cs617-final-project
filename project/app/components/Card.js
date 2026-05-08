@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 // Source: https://v1.tailwindcss.com/components/cards
 
-const Card = ({ hospital, bh, selected }) => {
+const Card = ({ hospital, bh, condition, condPresent, selected }) => {
     const [avg, setAvg] = useState(0);
     const [showExtra, setShowExtra] = useState(false);
     const [consistency, setConsistency] = useState(0);
