@@ -30,19 +30,11 @@ const Card = ({ hospital, bh, condition, condPresent, year, selected }) => {
 
         if (showExtra) {
             const minStay = values.reduce((min, value) => {
-                if (value < min) {
-                    return value;
-                } else {
-                    return min;
-                }
+                return Math.min(min, value);
             }, Infinity);
 
             const maxStay = values.reduce((max, value) => {
-                if (value > max) {
-                    return value;
-                } else {
-                    return max;
-                }
+                return Math.max(max, value);
             }, -Infinity);
 
             const consistency = values.reduce((sum, value) => {
