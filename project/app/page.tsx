@@ -15,7 +15,7 @@ export default function Home() {
     .then((data) => setData(data));
   }, []);
 
-  const selected = data.find((row) => {
+  const selected = data.filter((row) => {
     const hospitalMatch = hospital === "Select Hospital" || row.Hospital === hospital;
 
     const bhMatch =
@@ -37,7 +37,7 @@ export default function Home() {
             <div className="flex gap-5">
               <Dropdown 
                 text="Select Hospital" 
-                options={["Select Hospital", ...data.map((row) => row.Hospital)]}
+                options={["Select Hospital", ...new Set(data.map((row) => row.Hospital))]}
                 value={hospital}
                 onChange={setHospital} 
               />
