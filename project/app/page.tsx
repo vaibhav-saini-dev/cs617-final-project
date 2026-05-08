@@ -1,7 +1,29 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Dropdown from "./components/Dropdown";
 import Card from "./components/Card";
 
 export default function Home() {
+  const [data, setData] = useState([]);
+  const [hospital, setHospital] = useState("Select Hospital");
+  const [bh, setBh] = useState("Behavioral Health Issues?");
+
+  useEffect(() => {
+    fetch("/data/hospital_data.json")
+    .then((res) => res.json())
+    .then((data) => setData(data));
+  }, []);
+
+  const selected = data.find((row) => {
+    const hospitalMatch = hospital === "Select Hospital" || row.Hospital === hospital;
+
+    const bhMatch =
+      bh === "Behavioral Health Issues?" || row.bh === bh;
+
+    return hospitalMatch && bhMatch;
+  });
+
   return (
     <main className="min-h-screen bg-black text-white font-sans">
       <section className="mx-auto flex min-h-screen w-full max-w-4xl items-center px-8 py-20">
@@ -15,12 +37,16 @@ export default function Home() {
             <div className="flex gap-5">
               <Dropdown 
                 text="Select Hospital" 
-                options={["Select Hospital", "Hospital 1", "Hospital 2"]} 
+                options={["Select Hospital", ...data.map((row) => row.Hospital)]}
+                value={hospital}
+                onChange={setHospital} 
               />
 
               <Dropdown 
                 text="Behavioral Health Issues?" 
-                options={["Behavioral Health Issues?", "Yes", "No"]} 
+                options={["Behavioral Health Issues?", "Yes", "No"]}
+                value={bh}
+                onChange={setBh}
               />
             </div>
 
@@ -36,7 +62,7 @@ export default function Home() {
           </div>
 
           <div className="flex justify-center lg:justify-end">
-            <Card />
+            <Card data={selected}/>
           </div>
 
         </div>

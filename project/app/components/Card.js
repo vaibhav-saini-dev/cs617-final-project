@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image';
 // Source: https://v1.tailwindcss.com/components/cards
 
-const Card = () => {
+const Card = ({selected}) => {
     return (
         <>
             <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white
