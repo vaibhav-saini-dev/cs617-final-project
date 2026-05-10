@@ -31,7 +31,7 @@ export default function ChartSection({ data, hospital, bh, condition, condPresen
         ].map((chart, index) => (
           <motion.div
             key={index}
-            className={`rounded-3xl bg-white p-4 shadow-2xl ${index === 2 ? "xl:col-span-2" : ""}`}
+            className={`rounded-3xl border border-white/10 bg-white/4 p-4 shadow-2xl shadow-blue-950/20 backdrop-blur ${index === 2 ? "xl:col-span-2" : ""}`}
             initial={{ opacity: 0, y: 35, scale: 0.98 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.2 }}

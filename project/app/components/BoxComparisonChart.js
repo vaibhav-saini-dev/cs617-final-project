@@ -6,6 +6,18 @@ const Plot = dynamic(() => import("react-plotly.js"), {
   ssr: false,
 });
 
+const chartTheme = {
+  paper: "rgba(255,255,255,0)",
+  plot: "rgba(255,255,255,0)",
+  text: "#e4e4e7",
+  muted: "#a1a1aa",
+  grid: "rgba(255,255,255,0.08)",
+  blue: "#60a5fa",
+  blueSoft: "rgba(96,165,250,0.35)",
+  orange: "#fb923c",
+  orangeSoft: "rgba(251,146,60,0.35)",
+};
+
 export default function BoxComparisonChart({ data, hospital, condition, condPresent, year }) {
   const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
 
@@ -38,22 +50,26 @@ export default function BoxComparisonChart({ data, hospital, condition, condPres
     {
       x: bhValues,
       type: "box",
-      name: isMobile
-        ? "Behavioral<br>Health"
-        : "Behavioral Health",
+      name: isMobile ? "Behavioral<br>Health" : "Behavioral Health",
       boxpoints: "outliers",
-      jitter: 0.2,
+      jitter: 0.25,
       pointpos: 0,
+      marker: { color: chartTheme.blue, opacity: 0.75 },
+      line: { color: chartTheme.blue },
+      fillcolor: chartTheme.blueSoft,
+      hovertemplate: "<b>Behavioral Health</b><br>%{x:.2f} days<extra></extra>",
     },
     {
       x: noBhValues,
       type: "box",
-      name: isMobile
-        ? "No<br>Behavioral<br>Health"
-        : "No Behavioral Health",
+      name: isMobile ? "No<br>Behavioral<br>Health" : "No Behavioral Health",
       boxpoints: "outliers",
-      jitter: 0.2,
+      jitter: 0.25,
       pointpos: 0,
+      marker: { color: chartTheme.orange, opacity: 0.75 },
+      line: { color: chartTheme.orange },
+      fillcolor: chartTheme.orangeSoft,
+      hovertemplate: "<b>No Behavioral Health</b><br>%{x:.2f} days<extra></extra>",
     },
   ];
 
@@ -61,19 +77,31 @@ export default function BoxComparisonChart({ data, hospital, condition, condPres
     title: {
       text: isMobile
         ? "How Consistent are<br>Hospital Stay Lengths?"
-        : "How Consistent are Hospital Stay Lengths?"
+        : "How Consistent are Hospital Stay Lengths?",
+      font: { color: chartTheme.text },
     },
-    xaxis: { title: { text: "Average Stay (Days)" } },
-    yaxis: { title: { text: "" } },
-    paper_bgcolor: "white",
-    plot_bgcolor: "white",
+    xaxis: {
+      title: { text: "Average Stay (Days)", font: { color: chartTheme.text } },
+      tickfont: { color: chartTheme.muted },
+      gridcolor: chartTheme.grid,
+      zerolinecolor: chartTheme.grid,
+    },
+    yaxis: {
+      title: { text: "" },
+      tickfont: { color: chartTheme.muted },
+      gridcolor: chartTheme.grid,
+      zerolinecolor: chartTheme.grid,
+    },
+    paper_bgcolor: chartTheme.paper,
+    plot_bgcolor: chartTheme.plot,
+    font: { color: chartTheme.text },
     height: 500,
-    margin: { t: 60, r: 40, b: 70, l: isMobile ? 70: 130 },
+    margin: { t: 70, r: 40, b: 80, l: isMobile ? 80 : 150 },
     showlegend: false,
   };
 
   return (
-    <div className="w-full rounded-lg bg-white p-4">
+    <div className="w-full rounded-2xl">
       <Plot
         data={chartData}
         layout={layout}
