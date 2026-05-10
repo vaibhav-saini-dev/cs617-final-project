@@ -7,6 +7,8 @@ const Plot = dynamic(() => import("react-plotly.js"), {
 });
 
 export default function YearComparisonChart({ data, hospital, bh, condition, condPresent }) {
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
+
     const filtered = data.filter((row) => {
         const hospitalMatch = hospital === "Select Hospital" || hospital === row.Hospital;
         const bhMatch = bh === "Behavioral Health Issues?" || bh === row.bh;
@@ -39,7 +41,10 @@ export default function YearComparisonChart({ data, hospital, bh, condition, con
     ];
 
     const layout = {
-        title: { text: "Average Length of Stay: By Year" },
+        title: { 
+            text: isMobile
+            ? "Average Length of Stay:<br>By Year"
+            : "Average Length of Stay: By Year" },
         xaxis: { title: { text: "Year" } },
         yaxis: { title: { text: "Average Stay (Days)" } },
         paper_bgcolor: "white",
