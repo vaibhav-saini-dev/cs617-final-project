@@ -25,7 +25,7 @@ Additional Datasets
 
 ## Getting Started
 
-Clone the repository, cd into cs617-final-project/project, and then install dependencies:
+Clone the repository, cd into cs617-final-project, and then install dependencies:
 
 ```bash
 npm install
