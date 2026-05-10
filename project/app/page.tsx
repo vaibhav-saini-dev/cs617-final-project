@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Dropdown from "./components/Dropdown";
 import Card from "./components/Card";
 import BHComparisonChart from "./components/BHComparisonChart.js";
+import YearComparisonChart from "./components/YearComparisonChart.js";
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -111,6 +112,13 @@ export default function Home() {
             year={year}
           />
 
+          <YearComparisonChart
+            data={data}
+            hospital={hospital}
+            bh={bh}
+            condition={condition}
+            condPresent={condPresent}
+          />
         </div>
       </section>
     </main>

@@ -6,7 +6,7 @@ const Plot = dynamic(() => import("react-plotly.js"), {
   ssr: false,
 });
 
-export default function BHComparisonChart({ data, hospital, condition, condPresent, year}) {
+export default function BHComparisonChart({ data, hospital, condition, condPresent, year }) {
   const filtered = data.filter((row) => {
     const hospitalMatch = hospital === "Select Hospital" || hospital === row.Hospital;
     const conditionMatch = condition === "Condition" || condition === row.Condition;
@@ -22,7 +22,9 @@ export default function BHComparisonChart({ data, hospital, condition, condPrese
       .map((row) => Number(row["Average Length of Stay"]))
       .filter((value) => !isNaN(value));
 
-    if (values.length === 0) return 0;
+    if (values.length === 0) {
+      return 0;
+    }
 
     const total = values.reduce((sum, value) => sum + value, 0);
     return Number((total / values.length).toFixed(2));
