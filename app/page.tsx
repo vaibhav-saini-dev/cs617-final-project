@@ -18,7 +18,7 @@ export default function Home() {
   const [year, setYear] = useState("Year");
 
   useEffect(() => {
-    fetch("https://vaibhav-saini-dev.github.io/cs617-final-project/data/hospital_data.json")
+    fetch("/cs617-final-project/data/hospital_data.json")
       .then((res) => res.json())
       .then((data) => setData(data));
   }, []);
