@@ -7,8 +7,6 @@ import { FaCaretDown } from 'react-icons/fa';
 export default function Dropdown({ text, options, value, onChange }) {
     const [isOpen, setIsOpen] = useState(false);
 
-    const languages = options;
-
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };
@@ -19,7 +17,7 @@ export default function Dropdown({ text, options, value, onChange }) {
     };
 
     return (
-            <div className="relative inline-block text-left">
+            <div className="relative inline-block w-full text-left">
                 {/* Dropdown button */}
                 <button
                     type="button"
@@ -35,17 +33,16 @@ export default function Dropdown({ text, options, value, onChange }) {
 
                 {/* Dropdown menu */}
                 {isOpen && (
-                    <div className="text-center
-                                    mt-2  rounded-md
-                                    shadow-lg bg-white ring-1 ring-black
-                                    ring-opacity-5 focus:outline-none z-10">
-                        <div className="py-1">
+                    <div className="absolute left-0 top-full w-full text-center
+                                    mt-2 rounded-md shadow-lg bg-white ring-1 
+                                    ring-black/10 focus:outline-none z-50">
+                        <div className="max-h-80 overflow-y-auto py-1">
                             {options.map((option, index) => (
                                 <a
                                     key={index}
                                     href="#"
                                     type="button"
-                                    className="block px-4 py-2
+                                    className="block w-full px-4 py-2
                                                text-sm text-black
                                                hover:bg-gray-100"
                                     onClick={() => handleSelect(option)}
