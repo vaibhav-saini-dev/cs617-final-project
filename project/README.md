@@ -15,13 +15,16 @@ The project combines interactive visualizations, healthcare research, and narrat
 - Pandas (to parse Excel data sheet)
 - NumPy (to parse Excel data sheet)
 
-## Datasets
+## Datasets & Sources
 - [Massachusetts Acute Care Hospital Emergency Department Data October 2016 through June 2019](https://www.chiamass.gov/assets/docs/r/Case-Mix-Reports/CSMR-EDD-Legacy-Databook-10-01-2016-to-06-30-2019.xlsx)
 
 Additional Datasets
 - https://pmc.ncbi.nlm.nih.gov/articles/PMC9223052/
 - https://www.tac.org/reports_publications/released-relapsed-rehospitalized-length-of-stay-and-readmission-rates-in-state-hospitals-a-comparitive-state-survey/
 - https://www.sciencedirect.com/science/article/pii/S0022395620308657
+
+Cover Image
+- https://www.pexels.com/photo/doctor-talking-to-a-patient-6129681/ 
 
 ## Getting Started
 

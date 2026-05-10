@@ -8,3 +8,5 @@ Additional datasets:
 - https://www.tac.org/reports_publications/released-relapsed-rehospitalized-length-of-stay-
 and-readmission-rates-in-state-hospitals-a-comparitive-state-survey/
 - https://www.sciencedirect.com/science/article/pii/S0022395620308657
+
+Cover Image: https://www.pexels.com/photo/doctor-talking-to-a-patient-6129681/ 
