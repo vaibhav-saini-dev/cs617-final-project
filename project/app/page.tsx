@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Dropdown from "./components/Dropdown";
 import Card from "./components/Card";
+import BHComparisonChart from "./components/BHComparisonChart.js";
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -19,17 +20,17 @@ export default function Home() {
   }, []);
 
   const selected = data.filter((row) => {
-      const hospitalMatch = hospital === "Select Hospital" || row.Hospital === hospital;
+    const hospitalMatch = hospital === "Select Hospital" || row.Hospital === hospital;
 
-      const bhMatch = bh === "Behavioral Health Issues?" || row.bh === bh;
+    const bhMatch = bh === "Behavioral Health Issues?" || row.bh === bh;
 
-      const conditionMatch = condition === "Condition" || row.Condition === condition;
+    const conditionMatch = condition === "Condition" || row.Condition === condition;
 
-      const condPresMatch = condPresent === "Condition Present?" || row["Condition Present"] === condPresent;
+    const condPresMatch = condPresent === "Condition Present?" || row["Condition Present"] === condPresent;
 
-      const yearMatch = String(year) === "Year" || String(row["Federal Fiscal Year"]) === String(year);
+    const yearMatch = String(year) === "Year" || String(row["Federal Fiscal Year"]) === String(year);
 
-      return hospitalMatch && bhMatch && conditionMatch && condPresMatch && yearMatch;
+    return hospitalMatch && bhMatch && conditionMatch && condPresMatch && yearMatch;
   });
 
   useEffect(() => {
@@ -101,6 +102,14 @@ export default function Home() {
           <div className="flex justify-center lg:justify-end">
             <Card hospital={hospital} bh={bh} condition={condition} condPresent={condPresent} year={year} selected={selected} />
           </div>
+
+          <BHComparisonChart
+            data={data}
+            hospital={hospital}
+            condition={condition}
+            condPresent={condPresent}
+            year={year}
+          />
 
         </div>
       </section>
