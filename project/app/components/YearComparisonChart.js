@@ -58,7 +58,7 @@ export default function YearComparisonChart({ data, hospital, bh, condition, con
             <Plot
                 data={chartData}
                 layout={layout}
-                config={{ responsive: true }}
+                config={{ responsive: true, displayModeBar: false }}
                 style={{ width: "100%", height: "100%" }}
             />
         </div>
