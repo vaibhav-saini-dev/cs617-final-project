@@ -29,6 +29,7 @@ Clone the repository, cd into cs617-final-project/project, and then install depe
 
 ```bash
 npm install
+npm install framer-motion react-plotly.js plotly.js react-icons
 ```
 
 Then, run the development server through
