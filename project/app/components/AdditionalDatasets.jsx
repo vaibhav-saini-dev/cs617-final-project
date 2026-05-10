@@ -1,3 +1,8 @@
+"use client";
+
+import { motion } from "framer-motion";
+import AnimatedSection from "./AnimatedSection";
+
 export default function AdditionalDatasets() {
   const sources = [
     {
@@ -20,7 +25,7 @@ export default function AdditionalDatasets() {
   ];
 
   return (
-    <section className="mx-auto max-w-7xl px-8 py-24">
+    <AnimatedSection className="mx-auto max-w-7xl px-8 py-24">
       <div className="mb-12 max-w-3xl">
         <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-400">
           Additional Datasets
@@ -64,6 +69,6 @@ export default function AdditionalDatasets() {
           </a>
         ))}
       </div>
-    </section>
+    </AnimatedSection>
   );
 }

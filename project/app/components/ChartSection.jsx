@@ -1,10 +1,14 @@
+"use client";
+
+import { motion } from "framer-motion";
+import AnimatedSection from "./AnimatedSection";
 import BHComparisonChart from "./BHComparisonChart";
 import YearComparisonChart from "./YearComparisonChart";
 import BoxComparisonChart from "./BoxComparisonChart";
 
 export default function ChartSection({ data, hospital, bh, condition, condPresent, year }) {
   return (
-    <section className="mx-auto w-full max-w-7xl px-8 py-24">
+    <AnimatedSection className="mx-auto w-full max-w-7xl px-8 py-24">
       <div className="mb-14 max-w-3xl">
         <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-400">
           Evidence
@@ -13,45 +17,30 @@ export default function ChartSection({ data, hospital, bh, condition, condPresen
           The data shows how behavioral health changes the shape of a hospital stay.
         </h2>
         <p className="mt-6 text-lg leading-8 text-zinc-300">
-          The charts below compare average length of stay, yearly patterns, and
-          consistency across patient groups.
-          <br />
-          <br />
+          The charts below compare average length of stay, yearly patterns, and consistency across patient groups.
+          <br /><br />
           Filtering data in the "Explore" section below updates these graphs.
         </p>
       </div>
 
       <div className="grid grid-cols-1 gap-12 xl:grid-cols-2">
-        <div className="rounded-3xl bg-white p-4 shadow-2xl">
-          <BHComparisonChart
-            data={data}
-            hospital={hospital}
-            condition={condition}
-            condPresent={condPresent}
-            year={year}
-          />
-        </div>
-
-        <div className="rounded-3xl bg-white p-4 shadow-2xl">
-          <YearComparisonChart
-            data={data}
-            hospital={hospital}
-            bh={bh}
-            condition={condition}
-            condPresent={condPresent}
-          />
-        </div>
-
-        <div className="rounded-3xl bg-white p-4 shadow-2xl xl:col-span-2">
-          <BoxComparisonChart
-            data={data}
-            hospital={hospital}
-            condition={condition}
-            condPresent={condPresent}
-            year={year}
-          />
-        </div>
+        {[
+          <BHComparisonChart data={data} hospital={hospital} condition={condition} condPresent={condPresent} year={year} />,
+          <YearComparisonChart data={data} hospital={hospital} bh={bh} condition={condition} condPresent={condPresent} />,
+          <BoxComparisonChart data={data} hospital={hospital} condition={condition} condPresent={condPresent} year={year} />,
+        ].map((chart, index) => (
+          <motion.div
+            key={index}
+            className={`rounded-3xl bg-white p-4 shadow-2xl ${index === 2 ? "xl:col-span-2" : ""}`}
+            initial={{ opacity: 0, y: 35, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ delay: 0.12, duration: 0.7 }}
+          >
+            {chart}
+          </motion.div>
+        ))}
       </div>
-    </section>
+    </AnimatedSection>
   );
 }

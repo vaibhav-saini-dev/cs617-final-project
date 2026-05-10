@@ -1,3 +1,8 @@
+"use client";
+
+import { motion } from "framer-motion";
+import AnimatedSection from "./AnimatedSection";
+
 export default function KeyFindings() {
   const findings = [
     {
@@ -15,7 +20,7 @@ export default function KeyFindings() {
   ];
 
   return (
-    <section className="mx-auto max-w-7xl px-8 py-20">
+    <AnimatedSection className="mx-auto max-w-7xl px-8 py-20">
       <div className="mb-12 max-w-3xl">
         <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-400">
           Key Pattern
@@ -36,6 +41,6 @@ export default function KeyFindings() {
           </div>
         ))}
       </div>
-    </section>
+    </AnimatedSection>
   );
 }

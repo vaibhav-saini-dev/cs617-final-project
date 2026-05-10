@@ -1,6 +1,11 @@
+"use client";
+
+import { motion } from "framer-motion";
+import AnimatedSection from "./AnimatedSection";
+
 export default function ConclusionSection() {
     return (
-        <section className="mx-auto max-w-5xl px-8 py-28 text-center">
+        <AnimatedSection className="mx-auto max-w-5xl px-8 py-28 text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-400">
                 Takeaway
             </p>
@@ -17,6 +22,6 @@ export default function ConclusionSection() {
                 is a patient moving through a healthcare system still struggling to meet the
                 growing demand for mental health care.
             </p>
-        </section>
+        </AnimatedSection>
     );
 }

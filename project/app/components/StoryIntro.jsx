@@ -1,6 +1,8 @@
+import AnimatedSection from "./AnimatedSection";
+
 export default function StoryIntro() {
   return (
-    <section className="mx-auto max-w-5xl px-8 py-24">
+    <AnimatedSection className="mx-auto max-w-5xl px-8 py-24">
       <div className="space-y-8">
         <h2 className="text-3xl font-semibold sm:text-5xl">
           A hospital stay is supposed to be temporary.
@@ -19,6 +21,6 @@ export default function StoryIntro() {
           data from 2016 through 2019.
         </p>
       </div>
-    </section>
+    </AnimatedSection>
   );
 }

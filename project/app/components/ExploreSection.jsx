@@ -1,9 +1,12 @@
 import Dropdown from "./Dropdown";
 import Card from "./Card";
 
+import { motion } from "framer-motion";
+import AnimatedSection from "./AnimatedSection";
+
 export default function ExploreSection({ hospitals, conditions, years, hospital, setHospital, bh, setBh, condition, setCondition, condPresent, setCondPresent, year, setYear, selected }) {
   return (
-    <section className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-8 py-24 lg:grid-cols-2">
+    <AnimatedSection className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-8 py-24 lg:grid-cols-2">
       <div>
         <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-400">
           Explore
@@ -78,6 +81,6 @@ export default function ExploreSection({ hospitals, conditions, years, hospital,
           selected={selected}
         />
       </div>
-    </section>
+    </AnimatedSection>
   );
 }
