@@ -5,6 +5,7 @@ import Dropdown from "./components/Dropdown";
 import Card from "./components/Card";
 import BHComparisonChart from "./components/BHComparisonChart.js";
 import YearComparisonChart from "./components/YearComparisonChart.js";
+import BoxComparisonChart from "./components/BoxComparisonChart.js";
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -118,6 +119,14 @@ export default function Home() {
             bh={bh}
             condition={condition}
             condPresent={condPresent}
+          />
+
+          <BoxComparisonChart
+            data={data}
+            hospital={hospital}
+            condition={condition}
+            condPresent={condPresent}
+            year={year}
           />
         </div>
       </section>
