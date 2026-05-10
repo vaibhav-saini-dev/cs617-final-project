@@ -7,6 +7,8 @@ const Plot = dynamic(() => import("react-plotly.js"), {
 });
 
 export default function BHComparisonChart({ data, hospital, condition, condPresent, year }) {
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
+
   const filtered = data.filter((row) => {
     const hospitalMatch = hospital === "Select Hospital" || hospital === row.Hospital;
     const conditionMatch = condition === "Condition" || condition === row.Condition;
@@ -32,14 +34,19 @@ export default function BHComparisonChart({ data, hospital, condition, condPrese
 
   const chartData = [
     {
-      x: ["Behavioral Health", "No Behavioral Health"],
+      x: isMobile 
+      ? ["Behavioral<br>Health", "No<br>Behavioral<br>Health"]
+      : ["Behavioral Health", "No Behavioral Health"],
       y: [getAverageByBH("Yes"), getAverageByBH("No")],
       type: "bar",
     },
   ];
 
   const layout = {
-    title: { text: "Average Length of Stay: BH vs No BH" },
+    title: { 
+      text: isMobile
+      ? "Average Length of Stay:<br> BH vs No BH"
+      : "Average Length of Stay: BH vs No BH" },
     xaxis: { title: { text: "Patient Group" } },
     yaxis: { title: { text: "Average Stay (Days)" } },
     paper_bgcolor: "white",

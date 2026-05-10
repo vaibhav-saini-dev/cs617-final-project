@@ -26,29 +26,18 @@ export default function Home() {
       const hospitalMatch = hospital === "Select Hospital" || row.Hospital === hospital;
       const bhMatch = bh === "Behavioral Health Issues?" || row.bh === bh;
       const conditionMatch = condition === "Condition" || row.Condition === condition;
-      const condPresMatch =
-        condPresent === "Condition Present?" || row["Condition Present"] === condPresent;
-      const yearMatch =
-        String(year) === "Year" || String(row["Federal Fiscal Year"]) === String(year);
+      const condPresMatch = condPresent === "Condition Present?" || row["Condition Present"] === condPresent;
+      const yearMatch = String(year) === "Year" || String(row["Federal Fiscal Year"]) === String(year);
 
       return hospitalMatch && bhMatch && conditionMatch && condPresMatch && yearMatch;
     });
   }, [data, hospital, bh, condition, condPresent, year]);
 
-  const hospitals = useMemo(
-    () => ["Select Hospital", ...Array.from(new Set(data.map((row) => row.Hospital))).sort()],
-    [data]
-  );
+  const hospitals = useMemo(() => ["Select Hospital", ...Array.from(new Set(data.map((row) => row.Hospital))).sort()], [data]);
 
-  const conditions = useMemo(
-    () => ["Condition", ...Array.from(new Set(data.map((row) => row.Condition))).sort()],
-    [data]
-  );
+  const conditions = useMemo(() => ["Condition", ...Array.from(new Set(data.map((row) => row.Condition))).sort()],[data]);
 
-  const years = useMemo(
-    () => ["Year", ...Array.from(new Set(data.map((row) => row["Federal Fiscal Year"]))).sort()],
-    [data]
-  );
+  const years = useMemo(() => ["Year", ...Array.from(new Set(data.map((row) => row["Federal Fiscal Year"]))).sort()],[data]);
 
   return (
     <main className="min-h-screen bg-black text-white font-sans">

@@ -49,7 +49,7 @@ export default function YearComparisonChart({ data, hospital, bh, condition, con
     };
 
     return (
-        <div className="w-full rounded-lg bh-white p-4">
+        <div className="w-full rounded-lg bg-white p-4">
             <Plot
                 data={chartData}
                 layout={layout}
