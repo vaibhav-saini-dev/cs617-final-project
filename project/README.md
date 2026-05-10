@@ -1,8 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# cs617-final-project
+
+Created for our CS 617 Final Project.
+
+## Project Overview
+A data storytelling project exploring how behavioral health issues affects hospital length of stay in Massachusetts emergency departments between 2016 and 2019, while also using outside sources to reveal patterns on how stay lengths can effect overcrowding, shorter stay lengths increasing readmission cycles, and how mental health visits are more likely to exceed 6 and 12 hours.
+
+The project combines interactive visualizations, healthcare research, and narrative design to show how behavioral health issues can place additional pressure on emergency care systems.
+
+## Frameworks/Tools Used
+- Next.js
+- Tailwind CSS
+- Plotly.js
+- Framer Motion
+- Pandas (to parse Excel data sheet)
+- NumPy (to parse Excel data sheet)
+
+## Datasets
+- [Massachusetts Acute Care Hospital Emergency Department Data October 2016 through June 2019](https://www.chiamass.gov/assets/docs/r/Case-Mix-Reports/CSMR-EDD-Legacy-Databook-10-01-2016-to-06-30-2019.xlsx)
+
+Additional Datasets
+- https://pmc.ncbi.nlm.nih.gov/articles/PMC9223052/
+- https://www.tac.org/reports_publications/released-relapsed-rehospitalized-length-of-stay-and-readmission-rates-in-state-hospitals-a-comparitive-state-survey/
+- https://www.sciencedirect.com/science/article/pii/S0022395620308657
 
 ## Getting Started
 
-First, run the development server:
+Clone the repository, cd into cs617-final-project/project, and then install dependencies:
+
+```bash
+npm install
+```
+
+Then, run the development server through
 
 ```bash
 npm run dev
@@ -16,21 +45,9 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## Authors
+[Vaibhav Saini](https://vsaini-portfolio.vercel.app/)
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[Erik Williamson](https://github.com/Erikfirstofhisname)
