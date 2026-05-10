@@ -1,10 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  basePath: "/cs617-final-project",
   output: "export",
+  basePath: "/cs617-final-project",
+  assetPrefix: "/cs617-final-project/",
+  images: {
+    unoptimized: true,
+  },
   reactStrictMode: true,
 };
 
-module.exports = nextConfig;
+export default nextConfig;
