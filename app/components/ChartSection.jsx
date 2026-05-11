@@ -19,7 +19,7 @@ export default function ChartSection({ data, hospital, bh, condition, condPresen
         <p className="mt-6 text-lg leading-8 text-zinc-300">
           The charts below compare average length of stay, yearly patterns, and consistency across patient groups.
           <br /><br />
-          Filtering data in the "Explore" section below updates these graphs.
+          Filtering data in the "Explore" section above updates these graphs.
         </p>
       </div>
 
