@@ -56,15 +56,6 @@ export default function Home() {
 
       <StoryIntro />
 
-      <ChartSection
-        data={data}
-        hospital={hospital}
-        bh={bh}
-        condition={condition}
-        condPresent={condPresent}
-        year={year}
-      />
-
       <ExploreSection
         hospitals={hospitals}
         conditions={conditions}
@@ -82,6 +73,15 @@ export default function Home() {
         selected={selected}
       />
 
+      <ChartSection
+        data={data}
+        hospital={hospital}
+        bh={bh}
+        condition={condition}
+        condPresent={condPresent}
+        year={year}
+      />
+      
       <KeyFindings />
 
       <AdditionalDatasets />
