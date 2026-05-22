@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import TitleSection from "./components/TitleSection";
 import StoryIntro from "./components/StoryIntro";
 import ChartSection from "./components/ChartSection";
+import StayPredictorSection from "./components/StayPredictorSection";
 import ExploreSection from "./components/ExploreSection";
 import KeyFindings from "./components/KeyFindings";
 import AdditionalDatasets from "./components/AdditionalDatasets";
@@ -16,7 +17,7 @@ export default function Home() {
   const [year, setYear] = useState("Year");
 
   useEffect(() => {
-    fetch("/cs617-final-project/data/hospital_data.json")
+    fetch("/data/hospital_data.json")
       .then((res) => res.json())
       .then((data) => setData(data));
   }, []);
