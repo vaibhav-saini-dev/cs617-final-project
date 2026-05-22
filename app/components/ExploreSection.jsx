@@ -4,7 +4,7 @@ import Card from "./Card";
 import { motion } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
 
-export default function ExploreSection({ hospitals, conditions, years, hospital, setHospital, bh, setBh, condition, setCondition, condPresent, setCondPresent, year, setYear, selected }) {
+export default function ExploreSection({ hospitals, years, hospital, setHospital, bh, setBh, year, setYear, selected }) {
   return (
     <AnimatedSection className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-8 py-24 lg:grid-cols-2">
       <div>
@@ -17,7 +17,7 @@ export default function ExploreSection({ hospitals, conditions, years, hospital,
         </h2>
 
         <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-300">
-          Select a hospital, year, condition, or behavioral health group to see
+          Select a hospital, year, or behavioral health group to see
           how the average stay changes.
         </p>
 
@@ -34,20 +34,6 @@ export default function ExploreSection({ hospitals, conditions, years, hospital,
             options={["Behavioral Health Issues?", "Yes", "No"]}
             value={bh}
             onChange={setBh}
-          />
-
-          <Dropdown
-            text="Condition"
-            options={conditions}
-            value={condition}
-            onChange={setCondition}
-          />
-
-          <Dropdown
-            text="Condition Present?"
-            options={["Condition Present?", "Excess LOS", "No Excess LOS"]}
-            value={condPresent}
-            onChange={setCondPresent}
           />
 
           <Dropdown
@@ -75,8 +61,6 @@ export default function ExploreSection({ hospitals, conditions, years, hospital,
         <Card
           hospital={hospital}
           bh={bh}
-          condition={condition}
-          condPresent={condPresent}
           year={year}
           selected={selected}
         />

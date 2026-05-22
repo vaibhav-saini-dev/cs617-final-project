@@ -18,16 +18,14 @@ const chartTheme = {
   orangeSoft: "rgba(251,146,60,0.35)",
 };
 
-export default function BHComparisonChart({ data, hospital, condition, condPresent, year }) {
+export default function BHComparisonChart({ data, hospital, year }) {
   const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
 
   const filtered = data.filter((row) => {
     const hospitalMatch = hospital === "Select Hospital" || hospital === row.Hospital;
-    const conditionMatch = condition === "Condition" || condition === row.Condition;
-    const condPresentMatch = condPresent === "Condition Present?" || condPresent === row["Condition Present"];
     const yearMatch = String(year) === "Year" || String(year) === String(row["Federal Fiscal Year"]);
 
-    return hospitalMatch && conditionMatch && condPresentMatch && yearMatch;
+    return hospitalMatch && yearMatch;
   });
 
   const getAverageByBH = (bhValue) => {
@@ -58,7 +56,7 @@ export default function BHComparisonChart({ data, hospital, condition, condPrese
           width: 2,
         },
       },
-      hoverTemplate: "%{x}<br><b>%{y:.2f} days</b><extra></extra>",
+      hoverTemplate: "%{x}<br><b>%{y:.2f} hours</b><extra></extra>",
     },
   ];
 
@@ -76,7 +74,7 @@ export default function BHComparisonChart({ data, hospital, condition, condPrese
       zerolinecolor: chartTheme.grid,
      },
     yaxis: { 
-      title: { text: "Average Stay (Days)", font: { color: chartTheme.text } },
+      title: { text: "Average Stay (Hours)", font: { color: chartTheme.text } },
       tickfont: { color: chartTheme.muted },
       gridcolor: chartTheme.grid,
       zerolinecolor: chartTheme.grid

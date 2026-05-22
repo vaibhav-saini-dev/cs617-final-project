@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 // Source: https://v1.tailwindcss.com/components/cards
 
-const Card = ({ hospital, bh, condition, condPresent, year, selected }) => {
+const Card = ({ hospital, bh, year, selected }) => {
   const [avg, setAvg] = useState(0);
   const [showExtra, setShowExtra] = useState(false);
   const [std, setStd] = useState(0);
@@ -43,13 +43,12 @@ const Card = ({ hospital, bh, condition, condPresent, year, selected }) => {
   }, [selected, showExtra]);
 
   useEffect(() => {
-    if (hospital !== "Select Hospital" && bh !== "Behavioral Health Issues?" && condition !== "Condition" &&
-        condPresent !== "Condition Present?" && String(year) !== "Year") {
+    if (hospital !== "Select Hospital" && bh !== "Behavioral Health Issues?" && String(year) !== "Year") {
       setShowExtra(false);
     } else {
       setShowExtra(true);
     }
-  }, [hospital, bh, condition, condPresent, year]);
+  }, [hospital, bh, year]);
 
   return (
     <div
@@ -65,24 +64,24 @@ const Card = ({ hospital, bh, condition, condPresent, year, selected }) => {
 
       <div className="mt-5 flex items-end gap-2">
         <span className="text-5xl font-bold tracking-tight">{avg}</span>
-        <span className="pb-2 text-xl text-zinc-300">days</span>
+        <span className="pb-2 text-xl text-zinc-300">hours</span>
       </div>
 
       {showExtra && (
         <div className="mt-8 space-y-4 border-t border-white/10 pt-6">
           <div className="flex justify-between gap-6 text-sm">
             <span className="text-zinc-400">Standard Deviation</span>
-            <span className="font-semibold text-white">±{std} days</span>
+            <span className="font-semibold text-white">±{std} hours</span>
           </div>
 
           <div className="flex justify-between gap-6 text-sm">
             <span className="text-zinc-400">Longest Stay</span>
-            <span className="font-semibold text-white">{longestStay} days</span>
+            <span className="font-semibold text-white">{longestStay} hours</span>
           </div>
 
           <div className="flex justify-between gap-6 text-sm">
             <span className="text-zinc-400">Shortest Stay</span>
-            <span className="font-semibold text-white">{shortestStay} days</span>
+            <span className="font-semibold text-white">{shortestStay} hours</span>
           </div>
         </div>
       )}

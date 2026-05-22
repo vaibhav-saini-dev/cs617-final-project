@@ -6,7 +6,7 @@ import BHComparisonChart from "./BHComparisonChart";
 import YearComparisonChart from "./YearComparisonChart";
 import BoxComparisonChart from "./BoxComparisonChart";
 
-export default function ChartSection({ data, hospital, bh, condition, condPresent, year }) {
+export default function ChartSection({ data, hospital, bh, year }) {
   return (
     <AnimatedSection className="mx-auto w-full max-w-7xl px-8 py-24">
       <div className="mb-14 max-w-3xl">
@@ -25,9 +25,9 @@ export default function ChartSection({ data, hospital, bh, condition, condPresen
 
       <div className="grid grid-cols-1 gap-12 xl:grid-cols-2">
         {[
-          <BHComparisonChart data={data} hospital={hospital} condition={condition} condPresent={condPresent} year={year} />,
-          <YearComparisonChart data={data} hospital={hospital} bh={bh} condition={condition} condPresent={condPresent} />,
-          <BoxComparisonChart data={data} hospital={hospital} condition={condition} condPresent={condPresent} year={year} />,
+          <BHComparisonChart data={data} hospital={hospital} year={year} />,
+          <YearComparisonChart data={data} hospital={hospital} bh={bh} />,
+          <BoxComparisonChart data={data} hospital={hospital} year={year} />,
         ].map((chart, index) => (
           <motion.div
             key={index}

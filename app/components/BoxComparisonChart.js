@@ -18,16 +18,14 @@ const chartTheme = {
   orangeSoft: "rgba(251,146,60,0.35)",
 };
 
-export default function BoxComparisonChart({ data, hospital, condition, condPresent, year }) {
+export default function BoxComparisonChart({ data, hospital, year }) {
   const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
 
   const filtered = data.filter((row) => {
     const hospitalMatch = hospital === "Select Hospital" || hospital === row.Hospital;
-    const conditionMatch = condition === "Condition" || condition === row.Condition;
-    const condPresentMatch = condPresent === "Condition Present?" || condPresent === row["Condition Present"];
     const yearMatch = String(year) === "Year" || String(year) === String(row["Federal Fiscal Year"]);
 
-    return hospitalMatch && conditionMatch && condPresentMatch && yearMatch;
+    return hospitalMatch && yearMatch;
   });
 
   const getValuesByBH = (bhValue) => {
@@ -57,7 +55,7 @@ export default function BoxComparisonChart({ data, hospital, condition, condPres
       marker: { color: chartTheme.blue, opacity: 0.75 },
       line: { color: chartTheme.blue },
       fillcolor: chartTheme.blueSoft,
-      hovertemplate: "<b>Behavioral Health</b><br>%{x:.2f} days<extra></extra>",
+      hovertemplate: "<b>Behavioral Health</b><br>%{x:.2f} hours<extra></extra>",
     },
     {
       x: noBhValues,
@@ -69,7 +67,7 @@ export default function BoxComparisonChart({ data, hospital, condition, condPres
       marker: { color: chartTheme.orange, opacity: 0.75 },
       line: { color: chartTheme.orange },
       fillcolor: chartTheme.orangeSoft,
-      hovertemplate: "<b>No Behavioral Health</b><br>%{x:.2f} days<extra></extra>",
+      hovertemplate: "<b>No Behavioral Health</b><br>%{x:.2f} hours<extra></extra>",
     },
   ];
 
@@ -81,7 +79,7 @@ export default function BoxComparisonChart({ data, hospital, condition, condPres
       font: { color: chartTheme.text },
     },
     xaxis: {
-      title: { text: "Average Stay (Days)", font: { color: chartTheme.text } },
+      title: { text: "Average Stay (Hours)", font: { color: chartTheme.text } },
       tickfont: { color: chartTheme.muted },
       gridcolor: chartTheme.grid,
       zerolinecolor: chartTheme.grid,

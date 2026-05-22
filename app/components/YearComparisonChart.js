@@ -15,16 +15,14 @@ const chartTheme = {
     blue: "#60a5fa",
 };
 
-export default function YearComparisonChart({ data, hospital, bh, condition, condPresent }) {
+export default function YearComparisonChart({ data, hospital, bh }) {
     const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
 
     const filtered = data.filter((row) => {
         const hospitalMatch = hospital === "Select Hospital" || hospital === row.Hospital;
         const bhMatch = bh === "Behavioral Health Issues?" || bh === row.bh;
-        const conditionMatch = condition === "Condition" || condition === row.Condition;
-        const condPresentMatch = condPresent === "Condition Present?" || condPresent === row["Condition Present"];
 
-        return hospitalMatch && bhMatch && conditionMatch && condPresentMatch;
+        return hospitalMatch && bhMatch;
     });
 
     const getAverageByYear = (yearValue) => {
@@ -60,7 +58,7 @@ export default function YearComparisonChart({ data, hospital, bh, condition, con
                     width: 2,
                 },
             },
-            hoverTemplate: "%{x}<br><b>%{y:.2f} days</b><extra></extra>",
+            hoverTemplate: "%{x}<br><b>%{y:.2f} hours</b><extra></extra>",
         },
     ];
 
@@ -78,7 +76,7 @@ export default function YearComparisonChart({ data, hospital, bh, condition, con
             zerolinecolor: chartTheme.grid,
         },
         yaxis: { 
-            title: { text: "Average Stay (Days)", font: { color: chartTheme.text } }, 
+            title: { text: "Average Stay (Hours)", font: { color: chartTheme.text } }, 
             tickfont: { color: chartTheme.muted },
             gridcolor: chartTheme.grid,
             zerolinecolor: chartTheme.grid,
