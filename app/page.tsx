@@ -66,10 +66,10 @@ export default function Home() {
         bh={bh}
         year={year}
       />
-      
-      <KeyFindings />
 
       <StayPredictorSection data={data} />
+
+      <KeyFindings />
 
       <AdditionalDatasets />
 
