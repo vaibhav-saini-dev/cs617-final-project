@@ -8,7 +8,7 @@ export default function TitleSection() {
     <section className="relative flex min-h-screen items-center overflow-hidden px-8 py-24">
       <motion.div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/sources-images/cover.png')" }}
+        style={{ backgroundImage: "url('/cs617-final-project/sources-images/cover.png')" }}
         initial={{ scale: 1.08 }}
         animate={{ scale: 1 }}
         transition={{ duration: 2.2, ease: "easeOut" }}
