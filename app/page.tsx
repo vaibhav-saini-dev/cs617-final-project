@@ -69,6 +69,8 @@ export default function Home() {
       
       <KeyFindings />
 
+      <StayPredictorSection data={data} />
+
       <AdditionalDatasets />
 
       <ConclusionSection />
